@@ -1,0 +1,156 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+priority -50
+
+global !p
+import vim
+
+# Set g:ultisnips_php_scalar_types to 1 if you'd like to enable PHP 7's scalar types for return values
+def isPHPScalarTypesEnabled():
+	isEnabled = vim.eval("get(g:, 'ultisnips_php_scalar_types', 0)") == "1"
+	return isEnabled or re.match('<\?php\s+declare\(strict_types=[01]\);', '\n'.join(vim.current.window.buffer))
+endglobal
+
+## Snippets from SnipMate, taken from
+## https://github.com/scrooloose/snipmate-snippets.git
+
+snippet pubf "Public function" b
+public function ${1:name}(${2:$param})$0
+{
+	${VISUAL}${3:return null;}
+}
+endsnippet
+
+snippet prof "Protected function" b
+protected function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet prif "Private function" b
+private function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pubs "Public static function" b
+public static function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pros "Protected static function" b
+protected static function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pris "Private static function" b
+private static function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet fu "Function snip" b
+function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet class "Class declaration template" b
+<?php
+
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+class $1
+{
+}
+endsnippet
+
+snippet interface "Interface declaration template" b
+<?php
+
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+interface $1
+{
+	public function ${3:someFunction}();$4
+}
+endsnippet
+
+snippet trait "Trait declaration template" b
+<?php
+
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+trait $1
+{
+}
+endsnippet
+
+snippet construct "__construct()" b
+public function __construct(${1:$dependencies})
+{
+	$1
+}
+$0
+endsnippet
+
+snippet doc "PHPDoc" b
+/**
+ * @$1
+ */
+endsnippet
+
+# :vim:ft=snippets:

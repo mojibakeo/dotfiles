@@ -1,0 +1,27 @@
+{
+  "coc.preferences.formatOnType": true,
+  "suggest.noselect": false,
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "snippets.ultisnips.enable": true,
+  "snippets.extends": {
+    "vue": ["html", "css", "javascript"]
+  },
+  "list.source.grep.command": "ag",
+  "suggest.languageSourcePriority": 0,
+  "yank.priority": 1,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    },
+    "intelephense": {
+      "command": "intelephense",
+      "args": ["--stdio"],
+      "filetypes": ["php"],
+      "initializationOptions": {
+        "storagePath": "/tmp/intelephense"
+      }
+    }
+  }
+}
