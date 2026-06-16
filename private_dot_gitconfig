@@ -1,0 +1,49 @@
+[user]
+	name = mojibakeo
+	email = mojibakeo@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFmFjIN5TTU7Ja1uxxzFlZyQmvEceajqYS84HQxOlcn
+[alias]
+	status = status -sb
+	ci = commit -m
+	co = checkout
+	cp = cherry-pick
+	di = diff
+	st = status
+	a  = add
+	c  = commit -m
+	d  = diff
+	s  = status
+	graph = log --graph --all --format=\"%x09%C(cyan bold)%an%Creset%x09%C(yellow)%h%Creset %C(magenta reverse)%d%Creset %s\"
+[color]
+	ui = auto
+[push]
+	default = simple
+	autoSetupRemote = true
+	autoSetupRemote = true
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[core]
+	editor = nvim -c \"set fenc=utf-8\"
+	excludesFile = /Users/bko/.gitignore_global
+	autoCRLF = false
+	filemode = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+[ghq]
+	root = ~/.local/share/chezmoi
+	root = ~/ghq
+[http]
+	postBuffer = 524288000
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
