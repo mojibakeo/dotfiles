@@ -64,7 +64,6 @@ return {
 
       local mason_packages = {
         'rust-analyzer',
-        'gopls',
         'typescript-language-server',
         'prisma-language-server',
         'tsp-server',
@@ -91,7 +90,6 @@ return {
             },
           },
         },
-        gopls = {},
         ts_ls = {
           settings = {
             typescript = {

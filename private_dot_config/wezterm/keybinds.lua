@@ -94,6 +94,7 @@ return {
       mods = "LEADER",
       action = act.ActivateKeyTable({ name = "activate_pane", timeout_milliseconds = 1000 }),
     },
+    { key = 'Enter', mods = 'SHIFT', action = wezterm.action.SendString('\n') },
   },
   -- key-tables: https://wezfurlong.org/wezterm/config/key-tables.html
   key_tables = {

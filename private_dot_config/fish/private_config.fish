@@ -23,3 +23,4 @@ source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 if [ -f '/Users/bko/.local/google-cloud-sdk/path.fish.inc' ]; . '/Users/bko/.local/google-cloud-sdk/path.fish.inc'; end
 
 set -gx EZA_CONFIG_DIR "/Users/bko/.config/eza"
+
