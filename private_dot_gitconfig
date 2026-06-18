@@ -1,7 +1,6 @@
 [user]
 	name = mojibakeo
 	email = mojibakeo@gmail.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFmFjIN5TTU7Ja1uxxzFlZyQmvEceajqYS84HQxOlcn
 [alias]
 	status = status -sb
 	ci = commit -m
@@ -41,9 +40,3 @@
 	postBuffer = 524288000
 [init]
 	defaultBranch = main
-[gpg]
-	format = ssh
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-[commit]
-	gpgsign = true

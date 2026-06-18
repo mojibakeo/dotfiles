@@ -13,6 +13,7 @@ config.show_close_tab_button_in_tabs = false
 config.window_frame = {
   inactive_titlebar_bg = "none",
   active_titlebar_bg = "none",
+  font_size = 13.0,
 }
 config.window_background_gradient = {
   colors = { "#000000" },
@@ -26,6 +27,27 @@ config.colors = {
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 
+local function basename(path)
+  if not path or path == "" then
+    return nil
+  end
+
+  local normalized = path:gsub("[/\\]+$", "")
+  return normalized:match("([^/\\]+)$") or normalized
+end
+
+local function current_dir_name(pane)
+  local cwd = pane.current_working_dir
+  if cwd then
+    local name = basename(cwd.file_path or tostring(cwd))
+    if name then
+      return name
+    end
+  end
+
+  return basename(pane.title) or pane.title or ""
+end
+
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local background = "#5c6d74"
   local foreground = "#FFFFFF"
@@ -35,7 +57,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     foreground = "#FFFFFF"
   end
   local edge_foreground = background
-  local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
+  local title = "   " .. wezterm.truncate_right(current_dir_name(tab.active_pane), max_width - 1) .. "   "
   return {
     { Background = { Color = edge_background } },
     { Foreground = { Color = edge_foreground } },
