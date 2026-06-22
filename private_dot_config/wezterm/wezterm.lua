@@ -13,7 +13,7 @@ config.show_close_tab_button_in_tabs = false
 
 local active_tab_background = "#B84B6A"
 local inactive_tab_background = "#5c6d74"
-local tab_bar_background = "#000000"
+local tab_bar_background = "none"
 local tab_padding_width = 2
 local tab_padding = string.rep(" ", tab_padding_width)
 local active_tab_left_edge = wezterm.nerdfonts.ple_left_half_circle_thick
